@@ -1,0 +1,18 @@
+server {
+	listen 443 ssl;
+    server_name fredin.org www.fredin.org;
+
+    ssl on;
+    ssl_certificate         /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key     /etc/nginx/ssl/key.pem;
+
+    root /var/www/fredin.org/public;
+    index index.html;
+
+    access_log /var/log/nginx/fredin.org/access.log;
+    error_log  /var/log/nginx/fredin.org/error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

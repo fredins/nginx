@@ -1,0 +1,15 @@
+server {
+	listen 443 ssl;
+    server_name server-vattenskoter.fredin.org www.server-vattenskoter.fredin.org;
+
+    ssl on;
+    ssl_certificate         /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key     /etc/nginx/ssl/key.pem;
+    
+    access_log /var/log/nginx/lista.fredin.org/access.log;
+    error_log /var/log/nginx/lista.fredin.org/error.log;
+    
+    location / {
+        proxy_pass http://server.vattenskoter.fredin.org:8080/;
+    }
+}

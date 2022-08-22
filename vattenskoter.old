@@ -1,0 +1,18 @@
+server {
+	listen 443 ssl;
+    server_name vattenskoter.fredin.org www.vattenskoter.fredin.org;
+
+    ssl on;
+    ssl_certificate         /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key     /etc/nginx/ssl/key.pem;
+
+    root /var/www/vattenskoter.fredin.org/build;
+    index index.html index.htm;
+
+    access_log /var/log/nginx/vattenskoter.fredin.org/access.log;
+    error_log  /var/log/nginx/vattenskoter.fredin.org/error.log;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

@@ -1,0 +1,16 @@
+server {
+	listen 443 ssl;
+    server_name assistant.fredin.org www.assistant.fredin.org;
+
+    ssl on;
+    ssl_certificate         /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key     /etc/nginx/ssl/key.pem;
+    
+    access_log /var/log/nginx/assistant.fredin.org/access.log;
+    error_log /var/log/nginx/assistant.fredin.org/error.log;
+    
+    location / {
+        proxy_pass http://localhost:8123/;
+    }
+
+}
